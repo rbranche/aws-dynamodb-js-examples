@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  dynamodb-local:
+    command: "-jar DynamoDBLocal.jar -sharedDb -optimizeDbBeforeStartup -dbPath ./data"
+    image: "amazon/dynamodb-local:latest"
+    expose:
+      - 8000
+    volumes:
+      - "./docker/dynamodb:/home/dynamodblocal/data"
+    working_dir: /home/dynamodblocal
+  app-node:
+    depends_on:
+      - dynamodb-local
+    image: aws-dynamodb-js-examples/batch-delete:local-${USER:-unknown}-${DOCKER_IMAGE_VERSION:-latest}
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: app-node
+    environment:
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID:-AWS_ACCESS_KEY_ID_LOCAL}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY:-AWS_SECRET_ACCESS_KEY_LOCAL}
+    command:
+      dynamodb describe-limits --endpoint-url http://dynamodb-local:8000 --region us-west-2
