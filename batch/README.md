@@ -43,4 +43,8 @@ Delete Items
 docker-compose run batch-utilities node delete_items.js
 ```
 
-
+Get Items 
+------------
+```
+docker-compose run batch-utilities node get_items.js
+```
