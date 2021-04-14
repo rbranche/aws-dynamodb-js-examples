@@ -1,5 +1,7 @@
 // create_table.js
 //
+// Create the DynamoDB table
+//
 // Usage: node create_table.js
 
 'use strict';
