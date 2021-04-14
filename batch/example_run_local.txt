@@ -1,0 +1,725 @@
+lekonia:batch{dev/add-batch} ryan$ pwd
+/Volumes/data/Work/repositories/www.github.org/aws-dynamodb-js-examples.git/batch
+lekonia:batch{dev/add-batch} ryan$ docker-compose build
+dynamodb-local uses an image, skipping
+Building batch-utilities
+[+] Building 10.6s (10/10) FINISHED
+ => [internal] load build definition from Dockerfile                                                                                                                                                                                     0.0s
+ => => transferring dockerfile: 310B                                                                                                                                                                                                     0.0s
+ => [internal] load .dockerignore                                                                                                                                                                                                        0.0s
+ => => transferring context: 74B                                                                                                                                                                                                         0.0s
+ => [internal] load metadata for docker.io/library/node:15                                                                                                                                                                               0.0s
+ => [1/5] FROM docker.io/library/node:15                                                                                                                                                                                                 0.1s
+ => [internal] load build context                                                                                                                                                                                                        0.1s
+ => => transferring context: 100.77kB                                                                                                                                                                                                    0.0s
+ => [2/5] WORKDIR /usr/src/app                                                                                                                                                                                                           0.0s
+ => [3/5] COPY package*.json ./                                                                                                                                                                                                          0.0s
+ => [4/5] RUN npm install -g npm && npm install                                                                                                                                                                                          9.3s
+ => [5/5] COPY . .                                                                                                                                                                                                                       0.1s
+ => exporting to image                                                                                                                                                                                                                   0.9s
+ => => exporting layers                                                                                                                                                                                                                  0.9s
+ => => writing image sha256:2e143174d7a46e25c15c1b45eff16a88f4a55a20e288686a4500653c957e284b                                                                                                                                             0.0s
+ => => naming to docker.io/aws-dynamodb-js-examples/batch:local-ryan-latest                                                                                                                                                              0.0s
+Successfully built 2e143174d7a46e25c15c1b45eff16a88f4a55a20e288686a4500653c957e284b
+lekonia:batch{dev/add-batch} ryan$ docker-compose run batch-utilities npm install
+Creating network "batch_default" with the default driver
+Creating batch_dynamodb-local_1 ... done
+Creating batch_batch-utilities_run ... done
+
+added 112 packages, and audited 113 packages in 7s
+
+1 package is looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+lekonia:batch{dev/add-batch} ryan$ docker-compose run batch-utilities node create_table.js
+Creating batch_batch-utilities_run ... done
+ENDPOINT = http://dynamodb-local:8000
+Table Created {
+  '$metadata': {
+    httpStatusCode: 200,
+    requestId: '6a3f11aa-dfec-4fc5-be6e-9d78e079af08',
+    extendedRequestId: undefined,
+    cfId: undefined,
+    attempts: 1,
+    totalRetryDelay: 0
+  },
+  TableDescription: {
+    ArchivalSummary: undefined,
+    AttributeDefinitions: [ [Object] ],
+    BillingModeSummary: undefined,
+    CreationDateTime: 2021-04-14T23:20:33.741Z,
+    GlobalSecondaryIndexes: undefined,
+    GlobalTableVersion: undefined,
+    ItemCount: 0,
+    KeySchema: [ [Object] ],
+    LatestStreamArn: undefined,
+    LatestStreamLabel: undefined,
+    LocalSecondaryIndexes: undefined,
+    ProvisionedThroughput: {
+      LastDecreaseDateTime: 1970-01-01T00:00:00.000Z,
+      LastIncreaseDateTime: 1970-01-01T00:00:00.000Z,
+      NumberOfDecreasesToday: 0,
+      ReadCapacityUnits: 5,
+      WriteCapacityUnits: 5
+    },
+    Replicas: undefined,
+    RestoreSummary: undefined,
+    SSEDescription: undefined,
+    StreamSpecification: undefined,
+    TableArn: 'arn:aws:dynamodb:ddblocal:000000000000:table/batchExample',
+    TableId: undefined,
+    TableName: 'batchExample',
+    TableSizeBytes: 0,
+    TableStatus: 'ACTIVE'
+  }
+}
+lekonia:batch{dev/add-batch} ryan$ docker-compose run batch-utilities node get_items.js
+Creating batch_batch-utilities_run ... done
+ENDPOINT = http://dynamodb-local:8000
+Number of items: 0
+lekonia:batch{dev/add-batch} ryan$ docker-compose run batch-utilities node add_items.js
+Creating batch_batch-utilities_run ... done
+ENDPOINT = http://dynamodb-local:8000
+Success, items inserted {
+  '$metadata': {
+    httpStatusCode: 200,
+    requestId: '255afa9b-dfec-48a3-952c-403a45700e98',
+    extendedRequestId: undefined,
+    cfId: undefined,
+    attempts: 1,
+    totalRetryDelay: 0
+  },
+  ConsumedCapacity: undefined,
+  ItemCollectionMetrics: undefined,
+  UnprocessedItems: {}
+}
+Success, items inserted {
+  '$metadata': {
+    httpStatusCode: 200,
+    requestId: 'b9fb17f1-157b-4709-bae6-8b7e0d2db654',
+    extendedRequestId: undefined,
+    cfId: undefined,
+    attempts: 1,
+    totalRetryDelay: 0
+  },
+  ConsumedCapacity: undefined,
+  ItemCollectionMetrics: undefined,
+  UnprocessedItems: {}
+}
+Success, items inserted {
+  '$metadata': {
+    httpStatusCode: 200,
+    requestId: '39e3c6bf-27e1-409e-90e5-96adbd59d6ed',
+    extendedRequestId: undefined,
+    cfId: undefined,
+    attempts: 1,
+    totalRetryDelay: 0
+  },
+  ConsumedCapacity: undefined,
+  ItemCollectionMetrics: undefined,
+  UnprocessedItems: {}
+}
+Success, items inserted {
+  '$metadata': {
+    httpStatusCode: 200,
+    requestId: 'b7c668d4-8bcd-4a7a-b8e3-909ae1296e28',
+    extendedRequestId: undefined,
+    cfId: undefined,
+    attempts: 1,
+    totalRetryDelay: 0
+  },
+  ConsumedCapacity: undefined,
+  ItemCollectionMetrics: undefined,
+  UnprocessedItems: {}
+}
+Success, items inserted {
+  '$metadata': {
+    httpStatusCode: 200,
+    requestId: '34fabe83-7e96-4ff1-a17f-f6b8a2cfbe3e',
+    extendedRequestId: undefined,
+    cfId: undefined,
+    attempts: 1,
+    totalRetryDelay: 0
+  },
+  ConsumedCapacity: undefined,
+  ItemCollectionMetrics: undefined,
+  UnprocessedItems: {}
+}
+lekonia:batch{dev/add-batch} ryan$ docker-compose run batch-utilities node get_items.js
+Creating batch_batch-utilities_run ... done
+ENDPOINT = http://dynamodb-local:8000
+{
+  uuid: { S: 'afcf3fb4-0b35-489c-a2cf-562acba593bf' },
+  chunk_id: { N: '304' }
+}
+{
+  uuid: { S: 'bdcd6da1-3950-46eb-b030-8cb27175d2ed' },
+  chunk_id: { N: '322' }
+}
+{
+  uuid: { S: 'c2fd9677-e543-4269-9568-fc58570c9591' },
+  chunk_id: { N: '109' }
+}
+{
+  uuid: { S: '04ca89c8-d040-470f-98eb-ff58f778b5c5' },
+  chunk_id: { N: '319' }
+}
+{
+  uuid: { S: '7f545146-b090-4c40-b4b7-715024e43696' },
+  chunk_id: { N: '123' }
+}
+{
+  uuid: { S: '91c72a7a-ea9b-4784-a4c4-08a935fb1d6b' },
+  chunk_id: { N: '418' }
+}
+{
+  uuid: { S: 'b814ab44-c3b3-4fbe-ae20-c6c490efcea3' },
+  chunk_id: { N: '106' }
+}
+{
+  uuid: { S: '42c610ce-0be3-4808-9ba7-b81e0a3839e6' },
+  chunk_id: { N: '205' }
+}
+{
+  uuid: { S: '0468cff3-1bb3-4de9-ab87-739570e6e3dd' },
+  chunk_id: { N: '15' }
+}
+{
+  uuid: { S: 'fd095b59-6a7a-450e-80c6-f1b2be487ca6' },
+  chunk_id: { N: '413' }
+}
+{
+  uuid: { S: 'e6b49ce3-d6fc-44ec-a505-9831031c2e92' },
+  chunk_id: { N: '421' }
+}
+{
+  uuid: { S: 'c4e6e607-8833-48ac-a062-5cc03738467d' },
+  chunk_id: { N: '314' }
+}
+{
+  uuid: { S: 'bda15f70-c7ab-4fa5-87b4-98ad2780d7be' },
+  chunk_id: { N: '20' }
+}
+{
+  uuid: { S: 'b8cc44ae-33eb-4cd0-a45e-7e5e2d683f5e' },
+  chunk_id: { N: '111' }
+}
+{
+  uuid: { S: '924750ff-76c2-45cd-a88d-701dca31ae10' },
+  chunk_id: { N: '318' }
+}
+{
+  uuid: { S: 'b9cd35aa-dc49-4a9e-8752-e6b8aa95cba4' },
+  chunk_id: { N: '220' }
+}
+{
+  uuid: { S: '0bb22955-4ce0-4958-804d-e320cdb8f5ce' },
+  chunk_id: { N: '201' }
+}
+{
+  uuid: { S: '9735a1c4-0cc6-46b5-8fbd-728fcbd482a4' },
+  chunk_id: { N: '118' }
+}
+{
+  uuid: { S: '8f48efae-fa9c-4dbf-b2f8-3b721a79169a' },
+  chunk_id: { N: '14' }
+}
+{
+  uuid: { S: '0d7fe558-bb98-44f4-950f-a23a0d7bbbf8' },
+  chunk_id: { N: '200' }
+}
+{
+  uuid: { S: 'c41f5703-5491-4fa4-82f7-91106cb3778d' },
+  chunk_id: { N: '408' }
+}
+{
+  uuid: { S: '0510b7cf-8201-47a5-8b9e-02130f4275e7' },
+  chunk_id: { N: '412' }
+}
+{
+  uuid: { S: '6d268657-28a9-4820-9306-955331578331' },
+  chunk_id: { N: '107' }
+}
+{
+  uuid: { S: '3be62075-6f10-4ec5-9dc4-bb53fb89fde3' },
+  chunk_id: { N: '324' }
+}
+{
+  uuid: { S: 'e040fc4c-6b8e-40f6-a25c-84d99e7940e9' },
+  chunk_id: { N: '311' }
+}
+{
+  uuid: { S: '25343b9d-c72c-45d0-b812-bc11dc4945c8' },
+  chunk_id: { N: '307' }
+}
+{
+  uuid: { S: '13e6e29a-d152-474e-9d10-03c2176511c4' },
+  chunk_id: { N: '224' }
+}
+{
+  uuid: { S: 'c5d92f90-0358-4b61-811e-7b6308d06007' },
+  chunk_id: { N: '313' }
+}
+{
+  uuid: { S: 'bec7af4b-6e59-4882-b1e9-50e9ca517d66' },
+  chunk_id: { N: '1' }
+}
+{
+  uuid: { S: 'e0809cbd-4d29-418d-8279-91044af26e62' },
+  chunk_id: { N: '302' }
+}
+{
+  uuid: { S: '08989d0a-678c-481f-9d26-d693105a1b50' },
+  chunk_id: { N: '13' }
+}
+{
+  uuid: { S: '800962e3-b376-4c2f-9084-ed4798e3f1fb' },
+  chunk_id: { N: '23' }
+}
+{
+  uuid: { S: 'db02ef1e-5f1e-4d27-bcd0-3c0c47c5babe' },
+  chunk_id: { N: '0' }
+}
+{
+  uuid: { S: '3885256e-7976-4c4f-b134-33b78e1244bf' },
+  chunk_id: { N: '6' }
+}
+{
+  uuid: { S: '0451a5a4-9393-411e-a9b0-85acab1c78ce' },
+  chunk_id: { N: '4' }
+}
+{
+  uuid: { S: 'fe32afa2-df8f-4952-942e-97fcb30b0a12' },
+  chunk_id: { N: '16' }
+}
+{
+  uuid: { S: '5658a729-d59b-401c-9932-f3f9b25f9335' },
+  chunk_id: { N: '410' }
+}
+{
+  uuid: { S: 'd072748c-5514-4e2f-912b-376d368b9f47' },
+  chunk_id: { N: '300' }
+}
+{
+  uuid: { S: '0573a199-bc37-4820-8a69-9b7741f9ab7d' },
+  chunk_id: { N: '219' }
+}
+{
+  uuid: { S: '4e8b3687-316f-48ac-903f-e26c037857ac' },
+  chunk_id: { N: '405' }
+}
+{
+  uuid: { S: '4c33120e-8bc4-46a0-a12f-675c0de858c1' },
+  chunk_id: { N: '105' }
+}
+{
+  uuid: { S: 'a287abbc-c270-478a-b24e-93ba5d416ba7' },
+  chunk_id: { N: '400' }
+}
+{
+  uuid: { S: 'ea8b9de2-2753-4bd7-a47e-c87ad65e5824' },
+  chunk_id: { N: '323' }
+}
+{
+  uuid: { S: '9145bcc1-30a9-4859-b372-370c344d3c5c' },
+  chunk_id: { N: '122' }
+}
+{
+  uuid: { S: '7af78a66-d036-478c-b667-9aae1cfbfbba' },
+  chunk_id: { N: '416' }
+}
+{
+  uuid: { S: '57bda348-74df-4913-92df-8241fb6b715a' },
+  chunk_id: { N: '110' }
+}
+{
+  uuid: { S: '51a4a749-2790-4e0b-9bc4-d3e60bc73fbb' },
+  chunk_id: { N: '2' }
+}
+{
+  uuid: { S: '82f2743e-f5b4-41dd-b8dd-ba45d6935022' },
+  chunk_id: { N: '321' }
+}
+{
+  uuid: { S: '9d0802f0-a1cd-4355-bac1-262234710a59' },
+  chunk_id: { N: '422' }
+}
+{
+  uuid: { S: '8334feb2-942b-4384-852f-4bd081ada496' },
+  chunk_id: { N: '204' }
+}
+{
+  uuid: { S: '9b7c1142-7aaf-4973-b586-e7dc01acefcb' },
+  chunk_id: { N: '315' }
+}
+{
+  uuid: { S: '78b4eed1-f0ca-407e-90da-6e736ba8ccd4' },
+  chunk_id: { N: '8' }
+}
+{
+  uuid: { S: 'c6b7fcd1-aec1-44ea-a3e0-217fb8b2c8c0' },
+  chunk_id: { N: '119' }
+}
+{
+  uuid: { S: '4fcf13e9-ffb3-431c-a4e9-b77743f900e3' },
+  chunk_id: { N: '411' }
+}
+{
+  uuid: { S: '7d8e4e73-50f2-4a2e-8522-862e0549bdd4' },
+  chunk_id: { N: '115' }
+}
+{
+  uuid: { S: '7aea316d-3a83-49f9-b20a-98a6fbaea9ac' },
+  chunk_id: { N: '213' }
+}
+{
+  uuid: { S: '5992f405-e96c-4a3e-b8ca-557f3f54ddc0' },
+  chunk_id: { N: '117' }
+}
+{
+  uuid: { S: '356937aa-66e9-4916-8236-565fc2f4d939' },
+  chunk_id: { N: '409' }
+}
+{
+  uuid: { S: '2896a0f8-029e-497c-b4bb-66319df7544c' },
+  chunk_id: { N: '320' }
+}
+{
+  uuid: { S: '2c27f9af-3c9a-4a36-a3e6-b0683fddac3f' },
+  chunk_id: { N: '424' }
+}
+{
+  uuid: { S: '697f21ce-acf0-46fa-a04e-faa1b45ffbcb' },
+  chunk_id: { N: '221' }
+}
+{
+  uuid: { S: 'cbb86cda-242a-4cd5-83aa-2aaf92fedf22' },
+  chunk_id: { N: '11' }
+}
+{
+  uuid: { S: '1d751d20-359e-495f-97cc-cba35d6d1691' },
+  chunk_id: { N: '419' }
+}
+{
+  uuid: { S: '55cae7c8-c85c-48d2-b33a-79819d16f957' },
+  chunk_id: { N: '18' }
+}
+{
+  uuid: { S: 'fe619d71-1afa-4562-97ef-37066d553cd2' },
+  chunk_id: { N: '310' }
+}
+{
+  uuid: { S: 'ffe2c436-0cb1-4d1e-a3c4-62bce9517d56' },
+  chunk_id: { N: '420' }
+}
+{
+  uuid: { S: 'f79e158d-a8b3-44c8-8088-5f31b5a3ea7e' },
+  chunk_id: { N: '217' }
+}
+{
+  uuid: { S: '080dd1f0-2268-4406-9afd-73016f768221' },
+  chunk_id: { N: '215' }
+}
+{
+  uuid: { S: '84466982-50f9-44ab-9dbb-63f6c5502627' },
+  chunk_id: { N: '5' }
+}
+{
+  uuid: { S: '213b60f3-95d4-449f-bf62-3d5fcb6d88ca' },
+  chunk_id: { N: '124' }
+}
+{
+  uuid: { S: '7f73bca9-2f67-4612-bb76-3e911fe9e245' },
+  chunk_id: { N: '214' }
+}
+{
+  uuid: { S: '933684fc-642e-4b80-819c-d04361a8f9c9' },
+  chunk_id: { N: '417' }
+}
+{
+  uuid: { S: 'e6230fb7-7362-4cba-8bee-1b3bf4802659' },
+  chunk_id: { N: '305' }
+}
+{
+  uuid: { S: '250fb55a-3bcf-4cd5-8062-a8ce71aac223' },
+  chunk_id: { N: '306' }
+}
+{
+  uuid: { S: '05beaa59-8965-4c4a-966f-e524585cff47' },
+  chunk_id: { N: '116' }
+}
+{
+  uuid: { S: '28dbaced-87ca-44d1-8ee6-40bd2ab35e20' },
+  chunk_id: { N: '403' }
+}
+{
+  uuid: { S: '01632d8c-c018-4769-9e1e-37dfac5b7ef7' },
+  chunk_id: { N: '407' }
+}
+{
+  uuid: { S: 'dfb11e4d-7380-4879-a498-8ddfcf555472' },
+  chunk_id: { N: '303' }
+}
+{
+  uuid: { S: '583b0a4c-4a73-4276-acde-344335ae6f6d' },
+  chunk_id: { N: '210' }
+}
+{
+  uuid: { S: 'e94e6dec-7d31-44c0-b773-95bf89be9849' },
+  chunk_id: { N: '216' }
+}
+{
+  uuid: { S: '1dc71cb5-66fb-473c-8dae-37ddb24162f5' },
+  chunk_id: { N: '406' }
+}
+{
+  uuid: { S: 'd90da2ed-0de7-418b-a39a-9e4a89fe614f' },
+  chunk_id: { N: '222' }
+}
+{
+  uuid: { S: '686f3d6f-3928-4997-a295-02e4e8db5489' },
+  chunk_id: { N: '211' }
+}
+{
+  uuid: { S: 'eb4da292-01e0-4f3e-a964-306b91dddeda' },
+  chunk_id: { N: '22' }
+}
+{
+  uuid: { S: '0ed5e665-f893-4a78-8fb7-396c98c7758f' },
+  chunk_id: { N: '309' }
+}
+{
+  uuid: { S: '26fed901-584a-49c4-b4e8-625a95e60e47' },
+  chunk_id: { N: '121' }
+}
+{
+  uuid: { S: '3e2be6dd-8dc3-4c4c-8a2d-2b50795949c7' },
+  chunk_id: { N: '24' }
+}
+{
+  uuid: { S: '0bce4d63-a399-4b62-a328-bb92aa935aca' },
+  chunk_id: { N: '21' }
+}
+{
+  uuid: { S: 'da59dd60-6cd2-4734-b004-c27a58f10aed' },
+  chunk_id: { N: '12' }
+}
+{
+  uuid: { S: '4d1fce28-e4ea-4ed9-afb6-6e5788c89047' },
+  chunk_id: { N: '209' }
+}
+{
+  uuid: { S: '14301e8e-9496-4d04-aac7-f95bb49f722f' },
+  chunk_id: { N: '308' }
+}
+{
+  uuid: { S: '6c71b3ca-806e-4401-a516-b528d69352d6' },
+  chunk_id: { N: '114' }
+}
+{
+  uuid: { S: 'd614e373-9fee-4475-8c5d-09cf132fc614' },
+  chunk_id: { N: '103' }
+}
+{
+  uuid: { S: '7e75c3b9-18da-4d56-ab5c-a7a8c1d31c63' },
+  chunk_id: { N: '223' }
+}
+{
+  uuid: { S: '40c37ad5-bd59-4f30-a263-89f7fb474d62' },
+  chunk_id: { N: '120' }
+}
+{
+  uuid: { S: '127de25f-ec00-49e5-beec-d092c3c93081' },
+  chunk_id: { N: '17' }
+}
+{
+  uuid: { S: '3477c6fb-1bc0-442b-8b9a-a71ef115dd07' },
+  chunk_id: { N: '104' }
+}
+{
+  uuid: { S: '262a0a61-a1a5-47fb-83d3-22d51ed7b55e' },
+  chunk_id: { N: '423' }
+}
+{
+  uuid: { S: '1a8ed30b-2e53-482e-a70a-181419e906f2' },
+  chunk_id: { N: '414' }
+}
+{
+  uuid: { S: 'f17b2a2c-d46f-4a5c-883c-f717382e5f98' },
+  chunk_id: { N: '208' }
+}
+{
+  uuid: { S: '0be9290d-0f29-453f-a169-16b8c0dc70be' },
+  chunk_id: { N: '108' }
+}
+{
+  uuid: { S: '0f6f4acd-f00d-4d7d-907f-132d3b96d4e8' },
+  chunk_id: { N: '212' }
+}
+{
+  uuid: { S: '701148a0-0637-46f3-b80c-9a7c341e295b' },
+  chunk_id: { N: '203' }
+}
+{
+  uuid: { S: '4506a9da-f9dd-4c57-be67-e9bf402d8c1f' },
+  chunk_id: { N: '10' }
+}
+{
+  uuid: { S: '280db4ee-6c4e-4548-9a25-f609433a166f' },
+  chunk_id: { N: '404' }
+}
+{
+  uuid: { S: 'b061e7ac-ca22-43a7-97f4-a4c5bca5ac24' },
+  chunk_id: { N: '415' }
+}
+{
+  uuid: { S: '5d11c420-9400-4563-88d3-9270be0933cf' },
+  chunk_id: { N: '101' }
+}
+{
+  uuid: { S: 'd87afe82-5f9a-48c6-ac13-db1e2e280567' },
+  chunk_id: { N: '112' }
+}
+{
+  uuid: { S: 'a3d23b5f-533e-4e66-a66f-82a77d4d6407' },
+  chunk_id: { N: '7' }
+}
+{
+  uuid: { S: 'fdf336ec-a14d-43ac-b526-e2af1e6afeaa' },
+  chunk_id: { N: '9' }
+}
+{
+  uuid: { S: '901cfefc-90ac-4e63-8070-d93580cf12b9' },
+  chunk_id: { N: '19' }
+}
+{
+  uuid: { S: '08ff2cdf-aeb2-445e-8982-574312bc5f59' },
+  chunk_id: { N: '3' }
+}
+{
+  uuid: { S: 'b4e8649f-2b99-4a7d-b52c-9d560b706fff' },
+  chunk_id: { N: '206' }
+}
+{
+  uuid: { S: 'dafba8a5-1fac-46e9-8ec4-9b5b0fbc50dd' },
+  chunk_id: { N: '401' }
+}
+{
+  uuid: { S: '048efed7-ef4a-4939-9fba-fb040d10c964' },
+  chunk_id: { N: '317' }
+}
+{
+  uuid: { S: 'f523520b-31d7-4084-9af3-ac43178a031b' },
+  chunk_id: { N: '113' }
+}
+{
+  uuid: { S: 'caf0700e-4af7-4e63-838c-0edc03b59c82' },
+  chunk_id: { N: '312' }
+}
+{
+  uuid: { S: 'fa0ccdb7-ddb2-4959-92cf-134573ed7123' },
+  chunk_id: { N: '100' }
+}
+{
+  uuid: { S: '16271b51-d771-4597-8730-56c209516be3' },
+  chunk_id: { N: '207' }
+}
+{
+  uuid: { S: 'd14fc5fb-8a98-446c-8b97-b596c913a488' },
+  chunk_id: { N: '316' }
+}
+{
+  uuid: { S: '93a62281-b4fd-4a1f-93c1-bb75ea4c99f8' },
+  chunk_id: { N: '402' }
+}
+{
+  uuid: { S: '3342b99e-677c-4e16-bd60-dc593073dc4f' },
+  chunk_id: { N: '301' }
+}
+{
+  uuid: { S: 'b02d9e3c-5c0d-4c37-a355-b5a23e313116' },
+  chunk_id: { N: '102' }
+}
+{
+  uuid: { S: 'c4799577-29a2-472b-96e7-d9a7115adad7' },
+  chunk_id: { N: '202' }
+}
+{
+  uuid: { S: 'b0166606-5321-417b-bbb7-8373031addb4' },
+  chunk_id: { N: '218' }
+}
+Number of items: 125
+lekonia:batch{dev/add-batch} ryan$ docker-compose run batch-utilities node delete_items.js
+Creating batch_batch-utilities_run ... done
+ENDPOINT = http://dynamodb-local:8000
+Success, items deleted {
+  '$metadata': {
+    httpStatusCode: 200,
+    requestId: '8ec3ea94-ffa5-421c-b5cc-255c3e79772d',
+    extendedRequestId: undefined,
+    cfId: undefined,
+    attempts: 1,
+    totalRetryDelay: 0
+  },
+  ConsumedCapacity: undefined,
+  ItemCollectionMetrics: undefined,
+  UnprocessedItems: {}
+}
+Success, items deleted {
+  '$metadata': {
+    httpStatusCode: 200,
+    requestId: '08b9f8e6-42ee-46a2-803f-288610922e47',
+    extendedRequestId: undefined,
+    cfId: undefined,
+    attempts: 1,
+    totalRetryDelay: 0
+  },
+  ConsumedCapacity: undefined,
+  ItemCollectionMetrics: undefined,
+  UnprocessedItems: {}
+}
+Success, items deleted {
+  '$metadata': {
+    httpStatusCode: 200,
+    requestId: 'e1e8d8e8-1a8c-4949-8f56-4cf26014d1ac',
+    extendedRequestId: undefined,
+    cfId: undefined,
+    attempts: 1,
+    totalRetryDelay: 0
+  },
+  ConsumedCapacity: undefined,
+  ItemCollectionMetrics: undefined,
+  UnprocessedItems: {}
+}
+Success, items deleted {
+  '$metadata': {
+    httpStatusCode: 200,
+    requestId: '133da4ef-1dde-408e-b16a-d7b7d7e63726',
+    extendedRequestId: undefined,
+    cfId: undefined,
+    attempts: 1,
+    totalRetryDelay: 0
+  },
+  ConsumedCapacity: undefined,
+  ItemCollectionMetrics: undefined,
+  UnprocessedItems: {}
+}
+Success, items deleted {
+  '$metadata': {
+    httpStatusCode: 200,
+    requestId: '9914594d-fd18-4609-9c66-5e414cbe057a',
+    extendedRequestId: undefined,
+    cfId: undefined,
+    attempts: 1,
+    totalRetryDelay: 0
+  },
+  ConsumedCapacity: undefined,
+  ItemCollectionMetrics: undefined,
+  UnprocessedItems: {}
+}
+lekonia:batch{dev/add-batch} ryan$ docker-compose run batch-utilities node get_items.js
+Creating batch_batch-utilities_run ... done
+ENDPOINT = http://dynamodb-local:8000
+Number of items: 0
+lekonia:batch{dev/add-batch} ryan$
