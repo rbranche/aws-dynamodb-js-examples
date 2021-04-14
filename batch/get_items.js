@@ -18,9 +18,11 @@ const run = async () => {
     
     try {
         let data;
+        let count = 0;
 
         do {
             data = await dbclient.send(new ScanCommand(scanParams));
+            count += data.Items.length
             for (let element of data.Items) {
                 console.log(element)
             }
@@ -28,6 +30,8 @@ const run = async () => {
             scanParams.ExclusiveStartKey = data.LastEvaluatedKey;
         }
         while (typeof data.LastEvaluatedKey != "undefined")
+
+        console.log("Number of items: " + count)
     } catch (err) {
         console.log("Error", err);
         return

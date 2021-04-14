@@ -5,7 +5,7 @@ This example shows how to use DynamoDB to Read/Write in Batches.
 
 Requirements
 ============
-1. Install Docker on your local machine (Docker for Mac, Docker for Windows, etc.)
+1. Install Docker Desktop on your local machine
 2. Build the docker image
 ```
 docker-compose build

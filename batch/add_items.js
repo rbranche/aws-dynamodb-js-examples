@@ -20,7 +20,7 @@ const run = async () => {
                 PutRequest: {
                     Item: {
                         uuid: { S: uuidv4() },
-                        chunk_id: { N: (i * 10) + k }
+                        chunk_id: { N: ((i * 100) + k).toString() }
                     }
                 }
             });
