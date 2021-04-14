@@ -8,6 +8,6 @@ WORKDIR /usr/src/app
 # where available (npm@5+)
 COPY package*.json ./
 
-RUN npm install -g
+RUN npm install -g npm && npm install
 
 COPY . .

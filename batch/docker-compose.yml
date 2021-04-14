@@ -8,7 +8,7 @@ services:
     volumes:
       - "./docker/dynamodb:/home/dynamodblocal/data"
     working_dir: /home/dynamodblocal
-  batch-utility:
+  batch-utilities:
     depends_on:
       - dynamodb-local
     links:
@@ -21,7 +21,7 @@ services:
       - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID:-AWS_ACCESS_KEY_ID_LOCAL}
       - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY:-AWS_SECRET_ACCESS_KEY_LOCAL}
       - REGION=${REGION:-us-west-2}
-      - DB_ENDPOINT=${DB_ENDPOINT:-http://dynamodb-local:8000}
+      - ENDPOINT=${ENDPOINT:-http://dynamodb-local:8000}
     command:
       # In a real production system, this would be the start server command. For this small example, we
       # just start a dummy `while` loop that loops forever so we can exec into the docker container if

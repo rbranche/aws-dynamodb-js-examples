@@ -12,11 +12,35 @@ docker-compose build
 ```
 3. Install the node_modules for local development
 ```
-docker-compose run batch-utility npm install
+docker-compose run batch-utilities npm install
 ```
 
 
 Usage
 =====
 
-docker-compose run batch-utility node utility.js [--debug] <add|delete|create|get>
+Note: the following commands use the local DynamoDB. To use the AWS DynamoDB, append the following environment variables to the commands:
+
+```
+ENDPOINT='aws' AWS_ACCESS_KEY_ID='<access_key>' AWS_SECRET_ACCESS_KEY='<secret_key>' docker-compose ...
+```
+
+Create Table
+------------
+```
+docker-compose run batch-utilities node create_table.js
+```
+
+Add Items 
+---------
+```
+docker-compose run batch-utilities node add_items.js
+```
+
+Delete Items 
+------------
+```
+docker-compose run batch-utilities node delete_items.js
+```
+
+
