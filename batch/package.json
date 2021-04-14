@@ -1,0 +1,8 @@
+{
+  "name": "aws-dynamodb-js-examples-batch",
+  "version": "1.0.0",
+  "main": "utility.js",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.12.0"
+  }
+}

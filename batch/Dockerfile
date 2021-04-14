@@ -8,6 +8,6 @@ WORKDIR /usr/src/app
 # where available (npm@5+)
 COPY package*.json ./
 
-RUN npm install aws-sdk
+RUN npm install -g
 
 COPY . .
