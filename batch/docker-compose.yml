@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+  dynamodb-local:
+    command: "-jar DynamoDBLocal.jar -sharedDb -optimizeDbBeforeStartup -dbPath ./data"
+    image: "amazon/dynamodb-local:latest"
+    expose:
+      - 8000
+    volumes:
+      - "./docker/dynamodb:/home/dynamodblocal/data"
+    working_dir: /home/dynamodblocal
+  batch-utilities:
+    depends_on:
+      - dynamodb-local
+    links:
+      - dynamodb-local
+    image: aws-dynamodb-js-examples/batch:local-${USER:-unknown}-${DOCKER_IMAGE_VERSION:-latest}
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID:-AWS_ACCESS_KEY_ID_LOCAL}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY:-AWS_SECRET_ACCESS_KEY_LOCAL}
+      - REGION=${REGION:-us-west-2}
+      - ENDPOINT=${ENDPOINT:-http://dynamodb-local:8000}
+    command:
+      # In a real production system, this would be the start server command. For this small example, we
+      # just start a dummy `while` loop that loops forever so we can exec into the docker container if
+      # we want to.
+      sh -c "echo 'This utility is normally run as a one-off (see README.md)'; while true; do sleep 30; done"
+    volumes:
+      # Make sure our local changes show up in the container while running
+      - .:/usr/src/app
